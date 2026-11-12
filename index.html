@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>fisherhub  </title>
+  <title>Fisherhub </title>
 
   <link rel="icon" href="favicon.png" type="image/png">
 
@@ -123,125 +123,10 @@
 
   </script>
 
-
-  <!-- ========================================================= -->
-  <!-- CORREÇÃO GLOBAL DE CORES -->
-  <!-- ========================================================= -->
-
-  <style>
-
-    html,
-    body {
-      background: #050505 !important;
-      color: #f4f4f5 !important;
-      font-family: "Söhne Breit", Roboto, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-    }
-
-    #content {
-      color: #f4f4f5 !important;
-    }
-
-    /* textos claros */
-
-    .text-white {
-      color: #ffffff !important;
-    }
-
-    .text-zinc-300 {
-      color: #d4d4d8 !important;
-    }
-
-    .text-zinc-400 {
-      color: #a1a1aa !important;
-    }
-
-    .text-zinc-500 {
-      color: #8f8f98 !important;
-    }
-
-    .text-zinc-600 {
-      color: #71717a !important;
-    }
-
-    .text-zinc-700 {
-      color: #52525b !important;
-    }
-
-    .text-gray-400 {
-      color: #a1a1aa !important;
-    }
-
-    .text-gray-500 {
-      color: #8f8f98 !important;
-    }
-
-    .text-gray-600 {
-      color: #71717a !important;
-    }
-
-    /* opacidades muito escuras */
-
-    .text-white\/20 {
-      color: rgba(255,255,255,.55) !important;
-    }
-
-    .text-white\/25 {
-      color: rgba(255,255,255,.60) !important;
-    }
-
-    .text-white\/30 {
-      color: rgba(255,255,255,.65) !important;
-    }
-
-    .text-white\/40 {
-      color: rgba(255,255,255,.72) !important;
-    }
-
-    /* conteúdo carregado */
-
-    #content * {
-      --tw-text-opacity: 1;
-    }
-
-    /* scrollbar */
-
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #050505;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #292929;
-      border-radius: 999px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #3f3f46;
-    }
-
-  </style>
-
-</head>
-
-
-<body>
-
-
-  <!-- ========================================================= -->
-  <!-- LOADER -->
-  <!-- ========================================================= -->
-
+ 
   <div
     id="app-loader"
-    class="fixed inset-0 z-[9999] flex items-center justify-center bg-[#050505]"
+    class="fixed inset-0 z-[9999] flex items-center justify-center theme-panel"
   >
 
     <div class="text-center">
@@ -832,46 +717,7 @@
   <!-- ========================================================= -->
   <!-- FOOTER -->
   <!-- ========================================================= -->
-<div class="w-full p-6">
-    <nav class="fixed bottom-0 left-0 right-0 z-[9999] h-16
-            bg-[black] border-t border-slate-800
-            ">
 
-    <div class="flex h-full items-center justify-around">
-
-           <a href="#" data-page="estou" class="flex h-full flex-1 flex-col items-center justify-center gap-1 text-slate-400 active:text-white">
-
-           <span class="text-[9px] font-medium uppercase           ">
-                Onde Estou
-            </span>
-            
-
-        </a>
-
-        <!-- TIMELINE -->
-        <a href="#" data-page="metas" class="flex h-full flex-1 flex-col items-center justify-center gap-1 text-slate-400 active:text-white">
-
-           <img src="assets/images/free.gif" class="w-4 h-4" alt="">
-            <span class="text-[9px] font-medium uppercase           ">
-                Onde Vou
-            </span>
-
-        </a>
-
-        <!-- MENU -->
-        <a href="#" data-page="trabalho" class="flex h-full flex-1 flex-col items-center justify-center gap-1 text-slate-400 active:text-white">
-
-            <span class="text-[9px] font-medium uppercase">
-                Oq Fazer
-            </span>
-            
-
-        </a>
-
-    </div>
-
-</nav>
-</div>
 
   <div id="footer"></div>
 
@@ -3077,7 +2923,42 @@ verificarCurriculo();
 const observadorCurriculo = new MutationObserver(verificarCurriculo);
 observadorCurriculo.observe(document.body, { childList: true, subtree: true });
 </script>
+<script>
+    // FULLSCREEN TOGGLE
 
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen?.();
+        } else {
+            document.exitFullscreen?.();
+        }
+    }
+
+    // Atualiza o ícone automaticamente
+    document.addEventListener('fullscreenchange', () => {
+        const btn = document.getElementById('fullscreenToggle');
+
+        if (!btn) return;
+
+        const icon = btn.querySelector('i');
+
+        if (document.fullscreenElement) {
+            btn.title = 'Sair da tela cheia';
+            btn.setAttribute('aria-label', 'Sair da tela cheia');
+
+            if (icon) icon.setAttribute('data-lucide', 'minimize');
+        } else {
+            btn.title = 'Tela cheia';
+            btn.setAttribute('aria-label', 'Ativar tela cheia');
+
+            if (icon) icon.setAttribute('data-lucide', 'maximize');
+        }
+
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    });
+</script>
 </body>
 
 </html>
